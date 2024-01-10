@@ -17,6 +17,8 @@ The HTRU2.csv consists of the following columns:
 
 The first 8 variables are input variables and the last one 9. class is the target variable. One of the problems with this dataset is that it contains a large number of outliers so in this research the Winsorizer function was used from the feature_engine library (capping_method = IQR, tail=both) for capping the outliers. For more information about feature_engine library and winsorizer function and parameters please visit: https://feature-engine.trainindata.com/en/latest/api_doc/outliers/Winsorizer.html#feature_engine.outliers.Winsorizer . The dataset consists of 17898 samples, where 1639 samples are pulsars and 16259 are non-pulsars. This means that the dataset is highly imbalanced so the application of dataset-balancing techniques was required. On the dataset, oversampling and undersampling techniques were applied to obtain balanced dataset variations which were later used in GPSC to obtain symbolic expressions (mathematical equations) for the detection of pulsars. The library that was used for oversampling/undersampling techniques is the imblearn library (https://imbalanced-learn.org/stable/). 
 
+The original dataset HTRU2.csv does not contain column names so plese provide it. The HTRU2.csv is not included in the Datasets folder of this GitHub rep. only the balanced dataset variations obtaiend using different oversampling or undersampling techniques.
+
 To run the genetic programming symbolic classifier algorithm (GPSC_CV5_test.py) you need a Python 3.9 and install these Python libraries: 
 1. numpy (pip install numpy)
 2. gplearn 0.4.2 (pip install gplearn)
@@ -26,5 +28,13 @@ To run the genetic programming symbolic classifier algorithm (GPSC_CV5_test.py) 
 If you have installed the Anaconda distribution of Python then use the conda command in the anaconda prompt to install the aforementioned libraries.
 
 When all libraries are installed using pip or conda command ensure that the dataset is in the same folder as the python script or provide an address where the dataset (.csv) is stored. Then in the Python script on command line 407 type in the address (if the dataset is in another folder) or simply the dataset name (if the .csv file is in the same folder as the python script) and run the Python script. 
+
+To read the output (5 separate output files) use nottepad++ (https://notepad-plus-plus.org/downloads/) 
+The GPSC script will generate following files: 
+1. History Log -> all infromation about GPSC execution, otpimal hyperparmaeters, symbolic expressions in raw form (without numpy functions), in numpy format (majority of functions have prefix np. however for div, log, log2, log10, sqrt use the functions defined in GPSC_CV5_test.py script)
+2. GP_Parameters.data -> save GPSC hyperparameters each time the random hyperparameter value search method is called
+3. Raw formulas.data -> formulas obtained after each GPSC training using 5-fold CV without numpy functions
+4. Clean formulas.data -> formulas obtained after eac GPSC training using 5-fold CV with numpy functions (majority of functions have prefix np. however for div, log, log2, log10, sqrt use the functions defined in GPSC_CV5_test.py script)
+5. GP_scores.data -> All evaluation metric values obtained during GPSC exection.
 
 Acknowledgement: If you use this code please cite the following article - Anđelić N. - Improvement of Pulsars Detection Using Dataset Balancing Methods and Symbolic Classification Ensemble, In progress 
