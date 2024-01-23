@@ -274,7 +274,7 @@ def GeneticProgramming(genes,X_train,X_test, y_train, y_test):
 
         for i in range(len(X_test)):
             if i%100 == 0:
-                print(f"Evaluating formulas on training dataset ... Currently {round(i/len(X_test)*100,4)}% completed")
+                print(f"Evaluating formulas on testing dataset ... Currently {round(i/len(X_test)*100,4)}% completed")
                 
             # print("i = {}".format(i))
             # result = [eval(NumpyFormulas_test[j]) for j in range(len(NumpyFormulas_test))]
